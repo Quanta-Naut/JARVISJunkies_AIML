@@ -1,4 +1,4 @@
-![Alt text](src/image3.jpeg)
+![Alt text](src/image3.png)
 
 ![Alt text](src/appImage.jpeg)
 
