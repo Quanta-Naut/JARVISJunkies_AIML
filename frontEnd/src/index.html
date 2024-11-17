@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+    <style>
+      /* Basic styling for the popup */
+      #popupWindow {
+        display: none;
+        position: fixed;
+        top: 69%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 500px; /* Semi-transparent background */
+        border: 2px solid #333;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       
+        border-radius: 10px; /* Optional: rounded corners for a softer look */
+    }
+  </style>
+  </head>
+
+  <body>
+    <main class="container">
+      
+      <div class="bg-black h-screen py-2 px-1">
+        <div class="border h-16 rounded-md">
+          <nav class=" flex">
+            <div class="mt-3 ml-2">
+              <img src="assets/gear-solid.svg" alt="" width="30" height="40">
+            </div>
+            <img src="assets/logo.png" alt="Example SVG" width="60" height="40" class=" ml-14 mt-2">
+            <div class="text-white text-xl font-bold text-center py-4 " >
+              Social Synapse
+            </div>
+            <div class="mt-3 ml-16">
+              <img src="assets/bell-solid.svg" alt="" width="30" height="40">
+            </div>
+          </nav>
+        </div>
+        <div class="border mt-2 h-52 p-2 rounded-md">
+          <div class="text-white mb-3 text-xl font-bold">Social Media</div>
+          <div class="">
+            <div class="h-36 w-full overflow-x-auto flex gap-2">
+              <!-- Card for Facebook -->
+              <div
+                class="flex-none w-32 h-full bg-blue-500 text-white flex flex-col items-center justify-center rounded-lg"
+              >
+                <div class="">
+                  <img src="assets/facebook-brands-solid.svg" alt="Example SVG" width="50" height="50">
+                </div>
+                <div class="text-2xl font-bold pt-4">Facebook</div>
+                <!-- <div class="text-sm">Connect with friends</div> -->
+              </div>
+
+              <!-- Card for Twitter -->
+              <div
+                class="flex-none w-32 h-full bg-blue-400 text-white flex flex-col items-center justify-center rounded-lg"
+              >
+                <div class="">
+                  <img src="assets/x-twitter-brands-solid.svg" alt="Example SVG" width="50" height="50">
+                </div>
+                <div class="text-2xl font-bold pt-4">Twitter</div>
+                <!-- <div class="text-sm">What's happening</div> -->
+              </div>
+
+              <!-- Card for Instagram -->
+              <div
+                class="flex-none w-32 h-full bg-gradient-to-r from-pink-500 to-purple-500 text-white flex flex-col items-center justify-center rounded-lg"
+              >
+                <div class="">
+                  <img src="assets/instagram-brands-solid.svg" alt="Example SVG" width="50" height="50">
+                </div>
+                <div class="text-2xl font-bold pt-4">Instagram</div>
+                <!-- <div class="text-sm">Share your moments</div> -->
+              </div>
+
+              <!-- Card for LinkedIn -->
+              <div
+                class="flex-none w-32 h-full bg-blue-700 text-white flex flex-col items-center justify-center rounded-lg"
+              >
+                <div class="">
+                  <img src="assets/linkedin-in-brands-solid.svg" alt="Example SVG" width="50" height="50">
+                </div>
+                <div class="text-2xl font-bold pt-4">LinkedIn</div>
+                <!-- <div class="text-sm">Professional network</div> -->
+              </div>
+
+              <!-- Card for YouTube -->
+              <div
+                class="flex-none w-32 h-full bg-red-600 text-white flex flex-col items-center justify-center rounded-lg"
+              >
+                <div class="">
+                  <img src="assets/youtube-brands-solid.svg" alt="Example SVG" width="50" height="50">
+                </div>
+                <div class="text-2xl font-bold pt-5">YouTube</div>
+                <!-- <div class="text-sm">Watch and share videos</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border mt-4 p-2 h-64 rounded-md">
+          <div class="text-white font-bold text-xl mb-3">
+            Post Engagements
+          </div>
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="border mt-4 p-2 h-64 rounded-md">
+          <div class="text-white font-bold text-xl mb-3">
+            Social Story Recap
+          </div>
+          <div class="">
+            <div class="border h-14 rounded-md text-white pt-3.5 pl-3">
+              @8:00 > Alice liked your photo.
+            </div>
+            <div class="border h-14 rounded-md text-white pt-3.5 pl-3 mt-3">
+              @9:00 > Bob shared your post.
+            </div>
+            <div class="border h-14 rounded-md text-white pt-3.5 pl-3 mt-3">
+              @15:00 > Eve started following you.
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <button
+      class="absolute bottom-4 right-4 bg-blue-500 text-white w-14 h-14 rounded-lg flex items-center justify-center shadow-lg hover:bg-blue-600 transition chatBot"
+      id="openBtn"
+    >
+      <!-- Icon (Font Awesome or any other icon library) -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8 10h.01M12 10h.01M16 10h.01M21 16c0 1.104-.896 2-2 2H5l-4 4V 6c0-1.104.896-2 2-2h14c1.104 0 2 .896 2 2v10z"
+        />
+      </svg> 
+    </button>  
+
+    <div id="popupWindow" class=" bg-zinc-800">
+      <div>
+        <button id="closeBtn" class="absolute top-2 right-2 px-3 py-1 bg-black text-white rounded-md hover:bg-opacity-75 focus:outline-none border">
+          X
+        </button>
+      </div>
+
+      <div id="messagesContainer" class="mt-4 space-y-4 max-h-96 overflow-y-auto flex-1"></div>
+
+        <!-- Input/Other area, with height 14 -->
+        <div class="h-14 bg-zinc-800 flex items-center justify-center mt-3">
+            <input type="text" placeholder="Type a message..." class="w-96 px-3 py-2 rounded-lg bg-white text-black ring-transparent" id="messageInput">
+            <button class=" h-10 border w-12 ml-3 rounded-md" id="sendBtn">
+              <img src="assets/paper-plane-regular.svg" alt="" width="30">
+            </button>
+        </div>
+  </div>
+
+    </main>
+
+  </body>
+  <script src="main.js"></script>
+</html>
