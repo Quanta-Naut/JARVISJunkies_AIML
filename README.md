@@ -1,6 +1,6 @@
 ![Alt text](src/image2.png)
 
-#The above image shows ****
+# The above image shows **Real Time Notification** BP1
 
 ![Alt text](src/appImage.jpeg)
 
