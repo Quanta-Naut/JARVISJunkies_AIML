@@ -1,4 +1,4 @@
-![Alt text](src/image3.png)
+![Alt text](src/image2.png)
 
 #The above image shows ****
 
